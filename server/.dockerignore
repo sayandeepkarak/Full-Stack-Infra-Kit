@@ -1,0 +1,30 @@
+# === Dependencies ===
+node_modules/
+
+# === Environment & Secrets ===
+.env
+.env.local
+.env.*.local
+
+# === Logs ===
+logs/
+*.log
+
+# === Build Output ===
+dist/
+build/
+out/
+
+# === OS & Editor ===
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# === TypeScript ===
+*.tsbuildinfo
+
+# === Misc ===
+.cache/
+tmp/
+var/

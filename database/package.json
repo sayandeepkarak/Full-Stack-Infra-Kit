@@ -1,0 +1,30 @@
+{
+  "name": "database",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "migrate": "knex migrate:latest --knexfile ./knexfile.ts",
+    "rollback": "knex migrate:rollback --knexfile knexfile.ts",
+    "make": "knex migrate:make --knexfile knexfile.ts",
+    "status": "knex migrate:status --knexfile knexfile.ts",
+    "seed": "knex seed:run --knexfile knexfile.ts",
+    "build": "tsc",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.30.0",
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "knex": "^3.2.7",
+    "pg": "^8.20.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.9",
+    "@types/pg": "^8.11.6",
+    "tsx": "4.20.5",
+    "typescript": "^5.5.2"
+  }
+}

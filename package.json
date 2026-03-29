@@ -1,0 +1,24 @@
+{
+  "name": "full_stack_repo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.30.0",
+  "scripts": {
+    "dev": "pnpm -r --parallel dev",
+    "build": "pnpm -r build",
+    "dcu": "docker compose up -d",
+    "dcd": "docker compose down",
+    "db:migrate": "pnpm --filter database run migrate",
+    "db:migrate:rollback": "pnpm --filter database run rollback",
+    "db:migrate:make": "pnpm --filter database run make",
+    "db:migrate:status": "pnpm --filter database run status",
+    "db:seed": "pnpm --filter database run seed",
+    "start:server": "pnpm --filter server start",
+    "lint": "pnpm -r lint",
+    "release": "pnpm version patch"
+  }
+}

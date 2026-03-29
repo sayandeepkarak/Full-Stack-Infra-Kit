@@ -1,0 +1,31 @@
+# === Dependencies ===
+node_modules/
+
+# === Environment & Secrets ===
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# === Logs ===
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# === Build Output ===
+dist/
+build/
+
+# === OS & Editor ===
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*~
+
+# === Misc ===
+var/
+.cache/
+tmp/

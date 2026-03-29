@@ -1,0 +1,54 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: postgres-primary
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+    ports:
+      - "${DB_PORT}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data:rw
+      - ./docker/primary/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./docker/primary/pg_hba.conf:/etc/postgresql/pg_hba.conf
+    command: >
+      postgres -c wal_level=replica
+               -c max_wal_senders=10
+               -c max_replication_slots=10
+               -c hba_file=/etc/postgresql/pg_hba.conf
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_DATABASE}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  replica:
+    image: postgres:16-alpine
+    container_name: postgres-replica
+    depends_on:
+      - postgres
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+    ports:
+      - "${REPLICA_DB_PORT}:5432"
+    volumes:
+      - replica_data:/var/lib/postgresql/data
+      - ./docker/replica/setup.sh:/setup.sh
+    entrypoint: ["/bin/sh", "/setup.sh"]
+
+  adminer:
+    image: adminer:latest
+    container_name: adminer_ui
+    restart: always
+    ports:
+      - "${ADMINER_PORT}:${ADMINER_FORWARD_PORT}"
+    environment:
+      ADMINER_DEFAULT_SERVER: postgres-primary
+
+volumes:
+  postgres_data:
+  replica_data:

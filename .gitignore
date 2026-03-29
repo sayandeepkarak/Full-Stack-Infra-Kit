@@ -1,0 +1,49 @@
+# === Dependencies ===
+node_modules/
+.pnp
+.pnp.js
+
+# === Environment & Secrets ===
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# === Logs ===
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# === Build Output ===
+dist/
+build/
+out/
+
+# === Database ===
+*.sqlite
+*.sqlite3
+*.db
+
+# === OS ===
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# === Editors ===
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# === TypeScript ===
+*.tsbuildinfo
+
+# === Misc ===
+.cache/
+.tmp/
+tmp/
+var/
