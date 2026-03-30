@@ -4,7 +4,7 @@ import logger from "./app/services/logger.service.js";
 
 dotenv.config({ path: "../.env" });
 
-const port = process.env.PORT || 3001;
+const port = process.env.API_PORT || 3001;
 
 function checkEnvironmentVariables() {
   logger.info("Checking environment variables...");
@@ -15,9 +15,8 @@ function checkEnvironmentVariables() {
     "DB_USER",
     "DB_PASSWORD",
     "DB_DATABASE",
+    "REPLICA_DB_HOST",
     "REPLICA_DB_PORT",
-    "ADMINER_PORT",
-    "ADMINER_FORWARD_PORT",
   ];
   const unsetVars = requiredEnvVars.filter((envVar) => !process.env[envVar]);
   if (unsetVars.length > 0) {

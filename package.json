@@ -10,8 +10,9 @@
   "scripts": {
     "dev": "pnpm -r --parallel dev",
     "build": "pnpm -r build",
-    "dcu": "docker compose up -d",
-    "dcd": "docker compose down",
+    "compose-up": "docker compose up",
+    "compose-build": "docker compose up --build",
+    "compose-down": "docker compose down",
     "db:migrate": "pnpm --filter database run migrate",
     "db:migrate:rollback": "pnpm --filter database run rollback",
     "db:migrate:make": "pnpm --filter database run make",
